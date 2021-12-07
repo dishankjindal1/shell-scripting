@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ -f tmp/ldata1 ]
+then
+NAME=`cat tmp/ldata1`
+echo "$NAME is logged in - "
+unset NAME
+else
+echo "GUEST - "
+fi

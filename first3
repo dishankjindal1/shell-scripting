@@ -1,0 +1,17 @@
+#!/bin/bash
+echo "Enter Values"
+read -p 'A = ' A
+read -p 'B = ' B
+
+if [ $A -gt $B ]
+then
+echo "True\n"
+else
+echo "False\n"
+fi
+
+echo 'Addition is : ' `expr $A + $B`
+echo 'Substraction is : ' `expr $A - $B`
+echo 'Division is : ' `expr $A / $B`
+echo 'Multiplication is : ' `expr $A \* $B` 
+

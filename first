@@ -1,0 +1,5 @@
+#!/bin/bash
+echo -e "This PC is owned by : \033[2;34m$(whoami)\033[1;30m\n" 
+echo -e "Name of this PC : \033[2;32m$(hostname)\033[1;37m\n"
+df -h
+echo -e ""

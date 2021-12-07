@@ -1,0 +1,9 @@
+#!/bin/bash
+read -p "Enter the directory you want to check" N
+
+echo "Property of Directory"
+ls -ld $N
+echo "Now the properties of contents of directory"
+echo ""
+read -p "Press enter to continue.............."
+ls -ls $N

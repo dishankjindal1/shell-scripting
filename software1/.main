@@ -1,0 +1,89 @@
+#!/bin/bash
+
+dialog --backtitle "`sh .logname`GNDPC" --menu "Please Select" 10 20 3 1 Login 2 Register 3 exit 2>tmp/rselect 
+
+RS=`cat tmp/rselect`
+
+if [ $RS -eq 1 ]
+then
+	if [ ! -f tmp/ldata1 ]
+	then
+	dialog --backtitle "`sh .logname`GNDPC" --inputbox "Username" 10 30 2>tmp/ldata1 #login data
+	mv tmp/ldata1 tmp/ldata3
+	dialog --backtitle "`sh .logname`GNDPC" --passwordbox "Password" 10 30 2>tmp/ldata2 #password
+	mv tmp/ldata3 tmp/ldata1
+	fi
+
+US=`cat tmp/ldata1` CUS=`grep -wr $US db/reg`
+PW=`cat tmp/ldata2` CPW=`grep -wr $PW db/preg`
+
+	if [ $US -a $CUS ] 
+	then
+		if [ $PW -a $CPW ]
+		then
+		dialog --backtitle "`sh .logname`GNDPC" --infobox "\n\n\n    Welcome to the world of possibilities $US" 10 60
+		sleep 3
+		sh .menu
+		else
+		rm tmp/ldata1 tmp/ldata2
+		dialog --backtitle "`sh .logname`GNDPC" --infobox "\n\n\n   Invalid username or password" 10 40
+		sleep 2 
+		fi
+	else
+	rm tmp/ldata1 tmp/ldata2
+	dialog --backtitle "`sh .logname`GNDPC" --infobox "\n\n\n   Invalid username or password" 10 40
+	sleep 2
+	fi
+sh .main
+
+###########################################################################################################################################
+elif [ $RS -eq 2 ] #2 Register
+then
+	if [ ! -d db ]
+	then
+	mkdir db db/reg db/preg
+	fi
+	n=1
+	while :
+	do
+		if [ -f db/reg/$n ]
+		then
+		n=`expr $n + 1`
+		else
+		n=$n
+		break
+		fi
+	done
+	touch tmp/reg$n
+dialog --backtitle "GNDPC" --inputbox "Username" 10 30 2>tmp/reg$n
+US=`cat tmp/reg$n`
+CUS=`grep -irw $US db/reg`
+	if ! $CUS
+	then
+	dialog --backtitle "GNDPC" --infobox "USER EXIST $US" 10 30
+	sleep 2
+	else	
+	cp tmp/reg$n db/reg/$n
+	touch db/preg/$n
+	dialog --backtitle "GNDPC" --passwordbox "Password" 10 30 2>db/preg/$n
+	USR=`cat db/reg/$n`
+	dialog --backtitle "GNDPC" --infobox "\n\n\n     Welcome $USR !! \n\n       your id=$n" 10 30
+	sleep 3 
+	clear
+	fi
+sh .main
+elif [ $RS -eq 3 ] #exit
+then
+dialog --infobox "\n\n\n          GoodBye" 10 30
+sleep 1
+clear
+else
+dialog --infobox "\n\n\n          GoodBye" 10 30
+sleep 1
+clear
+fi
+	#Will remove tmp directory on exiting
+	if [ -e tmp ]
+	then
+	rm -r tmp
+	fi

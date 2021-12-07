@@ -1,0 +1,91 @@
+#!/bin/bash
+
+YEAR=`date | cut -f6 -d" "`	#CURRENT Year
+MONTH=`date | cut -f2 -d" "`	#CURRENT Month
+
+if [ $MONTH -eq Jan ]
+then
+MONTH=JANUARY
+elif [ $MONTH -eq Feb ]
+then
+MONTH=FEBRUARY
+elif [ $MONTH -eq Mar ]
+then
+MONTH=MARCH
+elif [ $MONTH -eq Apr ]
+then
+MONTH=APRIL
+elif [ $MONTH -eq May ]
+then
+MONTH=MAY
+elif [ $MONTH -eq Jun ]
+then
+MONTH=JUNE
+elif [ $MONTH -eq Jul ]
+then
+MONTH=JULY
+elif [ $MONTH -eq Aug ]
+then
+MONTH=AUGUST
+elif [ $MONTH -eq Sep ]
+then
+MONTH=SEPTEMBER
+elif [ $MONTH -eq Oct ]
+then
+MONTH=OCTOBER
+elif [ $MONTH -eq Nov ]
+then
+MONTH=NOVEMBER
+elif [ $MONTH -eq Dec ]
+then
+MONTH=DECEMBER
+fi
+
+#START LOG FILE
+if [ ! -f .log ]
+then
+touch .log	#Create a hidden .log file
+echo "1 `date` LOG_FILE_CREATED" >> .log
+echo "2 `date` START" >> .log
+else
+N="echo `cut -f1 -d" " .log | tail -1`"	#LOCAL DECELARATION #Working to get number like 1..2..3
+N="expr `$N` + 1"	#INCREAMENT by 1
+echo "`$N` `date` START" >> .log
+fi
+N="echo `cut -f1 -d" " .log | tail -1`"	#GLOBAL DECELRATION
+
+#DIRECTORIES
+if [ -d $YEAR ]
+then
+	if [ ! -d $YEAR/$MONTH ]
+	then
+	N="expr `$N` + 1"
+	mkdir $YEAR/$MONTH
+	echo "`$N` `date` Directory_CREATED_$MONTH" >> .log
+	fi
+else
+N="expr `$N` + 1"
+mkdir -p $YEAR/$MONTH
+echo "`$N` `date` Directory_CREATED_$YEAR" >> .log
+N="expr `$N` + 1"
+echo "`$N` `date` Directory_CREATED_$MONTH" >> .log
+fi
+
+#BACKUP
+#cp -ru . $YEAR/$MONTH 2>>.log
+N="expr `$N` + 1"
+echo "`$N` `date` BACKUP_SUCCESSFUL" >> .log
+
+N="expr `$N` + 1"
+echo "`$N` `date` BACKUP_SUCCESSFUL_WITH_INTERRUPTION__check_error.log_file" >> .log
+
+N="expr `$N` + 1"
+echo "`$N` `date` BACKUP_FAILED__check_error.log_file" >> .log
+
+#END LOG FILE
+if [ -e .log ]
+then
+N="expr `$N` + 1"
+echo "`$N` `date` END" >> .log
+fi
+

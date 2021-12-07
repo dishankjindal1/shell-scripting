@@ -1,0 +1,12 @@
+#!/bin/bash
+
+dialog --infobox "\n\n\n    Welcome to GNDPC" 10 30
+sleep 2
+	#Will create tmp directory, if not exist
+	if [ ! -e tmp ]
+	then
+	mkdir tmp
+	#touch tmp/rselect  tmp/ldata1 tmp/ldata2
+	fi
+
+sh .main

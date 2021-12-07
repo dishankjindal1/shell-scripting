@@ -1,0 +1,50 @@
+#!/bin/bash
+clear
+echo -e "\t\t1.\tDisplay [D]irectory Content"
+echo -e "\t\t2.\tDisplay [F]ile Content"
+echo -e "\t\t3.\tE[x]it"
+echo -ne "\t\t\v\vEnter your option : "
+#-n means no new line
+
+read OP
+case $OP in #Switch starts with "in"
+"D"|"d") #this is the syntax for case / switch statements
+clear
+read -p "Please enter directory name : " DN
+if test -d $DN
+then
+ls -l $DN
+read -p "\n\n\nPlease enter to continue......."
+clear
+else
+echo "Directory not exist......"
+read -p "Try it again..."
+fi
+unset DN
+;; #Works same as break to exit further processing
+
+"F"|"f")
+clear
+read -p "Please enter file name : " FN
+if test -d $FN
+then
+cat $FN
+read -p "\n\n\nPlease enter to continue......."
+clear
+else
+echo "File not exist......"
+read -p "Try it again..."
+fi
+unset FN
+;;
+
+"X"|"x")
+clear #we can use "exit" also
+;;
+
+*) #this indicate default case
+clear
+read -p "Please enter a valid input......."
+;;
+esac #to exit case
+bin/first6

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+touch tmp/tmenu
+dialog --backtitle "`sh .logname`GNDPC" --menu "Available Options" 20 40 4 1 View 2 Create 3 Command_Prompt 4 Logout 2>tmp/tmenu
+
+TMENU=`cat tmp/tmenu`
+
+if [ $TMENU -eq 1 ]
+then
+dialog --backtitle "`sh .logname`GNDPC" --infobox "View option selected !" 10 40
+sleep 1
+sh .menu
+elif [ $TMENU -eq 2 ]
+then
+dialog --backtitle "`sh .logname`GNDPC" --infobox "Create option selected !" 10 40
+sleep 1
+sh .menu
+elif [ $TMENU -eq 3 ]
+then
+dialog --backtitle "`sh .logname`GNDPC" --infobox "Command prompt selected !" 10 40
+sleep 1
+sh .menu
+elif [ $TMENU -eq 4 ]
+then
+# remove the login files tmp/ldata1->user    tmp/ldata2->passwd
+dialog --backtitle "GNDPC" --infobox "`cat tmp/ldata1` is logged out" 10 40
+sleep 1
+rm tmp/ldata1 tmp/ldata2
+else
+dialog --backtitle "`sh .logname`GNDPC" --infobox "Cancelled !" 10 40
+sleep 1
+fi

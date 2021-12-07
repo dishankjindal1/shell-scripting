@@ -1,0 +1,82 @@
+#!/bin/bash
+
+until w | grep -q name
+do
+clear
+echo "User jay is not logged in"
+sleep 1
+done
+
+echo "#!/bin/bash
+
+until w | grep -q name
+do
+clear
+echo "User jay is not logged in"
+sleep 1
+done
+
+echo "#!/bin/bash
+
+until w | grep -q name
+do
+clear
+echo "User jay is not logged in"
+sleep 1
+done
+
+echo "#!/bin/bash
+
+until w | grep -q name
+do
+clear
+echo "User jay is not logged in"
+sleep 1
+done
+
+echo "#!/bin/bash
+
+until w | grep -q name
+do
+clear
+echo "User jay is not logged in"
+sleep 1
+done
+
+echo "#!/bin/bash
+
+until w | grep -q name
+do
+clear
+echo "User jay is not logged in"
+sleep 1
+done
+
+echo "#!/bin/bash
+
+until w | grep -q name
+do
+clear
+echo "User jay is not logged in"
+sleep 1
+done
+
+echo "#!/bin/bash
+
+until w | grep -q name
+do
+clear
+echo "User jay is not logged in"
+sleep 1
+done
+
+echo "#!/bin/bash
+
+until w | grep -q name
+do
+clear
+echo "User jay is not logged in"
+sleep 1
+done
+
+echo "

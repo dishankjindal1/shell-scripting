@@ -1,0 +1,20 @@
+#!/bin/bash
+clear
+tput cup 30 30
+read -p " Username : " UN
+clear
+
+stty -echo
+tput cup 30 30
+read -p " Password : " PW
+stty echo
+clear
+
+if [ $UN = "admin" ] && [ $PW = "password" ]
+then
+tput cup 30 30
+echo "Welcome!";echo;echo
+else
+tput cup 30 30
+echo "Please enter an correct username & pasword";echo;echo
+fi
